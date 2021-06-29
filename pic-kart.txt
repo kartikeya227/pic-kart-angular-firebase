@@ -1,0 +1,4 @@
+pic-kart
+made with angular + firebase + material design
+version: 1
+Made with love by Kartikeya Singh

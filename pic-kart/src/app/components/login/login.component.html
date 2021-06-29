@@ -1,0 +1,9 @@
+<div fxLayoutAlign="center">
+    <mat-card class="mat-card">
+        <ngx-auth-firebaseui
+            (onSuccess)="onSuccess()"
+            [providers] = "[providers.Google, providers.Facebook, providers.Twitter]"
+            [guestEnabled] = "false" >
+        </ngx-auth-firebaseui>    
+    </mat-card>
+</div>
