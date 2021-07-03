@@ -1,44 +1,57 @@
 <div class="sign-up-holder">
     <div class="sign-up-container"
     [class.mat-elevation-z8]=true>
-    <mat-vertical-stepper #stepper class="stepperSCSS" [class.mat-elevation-z12]=true>
-        <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
-          <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Fill out your name</ng-template>
+    <div class="divHeading">Create and Update Profile</div>
+      <mat-vertical-stepper #stepper class="stepperSCSS" [class.mat-elevation-z12]=true>
+        <form [formGroup]="userFormGroup" (ngSubmit)="onSubmit()">
+        <mat-step [stepControl]="userFormGroup" errorMessage="Some details are pending!.">
+          
+            <ng-template matStepLabel>A bit of paper work</ng-template>
             <mat-form-field>
               <mat-label>Name</mat-label>
-              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+              <input matInput placeholder="What to call you" formControlName="displayName" required>
             </mat-form-field>
-            <div>
-              <p>Go to a different step to see the error state</p>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
-          <form [formGroup]="secondFormGroup">
-            <ng-template matStepLabel>Fill out your address</ng-template>
-            <mat-form-field>
-              <mat-label>Address</mat-label>
-              <input matInput placeholder="Ex. 1 Main St, New York, NY" formControlName="secondCtrl"
-                     required>
-            </mat-form-field>
-            <div>
-              <p>Go to a different step to see the error state</p>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-          <p>You are now done.</p>
+              <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input matInput placeholder="Where to find you" formControlName="address"
+                       required>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Phone Number</mat-label>
+                <input matInput placeholder="Where to ping you" formControlName="phoneNumber"
+                       required>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Gender</mat-label>
+                <input matInput placeholder="How do you identify" formControlName="gender"
+                       required>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Role</mat-label>
+                <input matInput placeholder="What role would you enjoy" formControlName="role"
+                       required>
+              </mat-form-field>
+          
           <div>
-            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
             <button mat-button (click)="stepper.reset()">Reset</button>
           </div>
         </mat-step>
+       
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <p *ngIf="userFormGroup.valid; else elseBlock">You are all set, it was great to know about you. Press done and welcome to the fam!</p>
+          <ng-template #elseBlock>Oops, Seems we need to know more about eachother!</ng-template>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="onSubmit()" [disabled]="!userFormGroup.valid">Done</button>
+          </div>
+        </mat-step>
+      </form>
       </mat-vertical-stepper>
-      
     </div>
+</div>
+<div *ngIf="displaySpinner">
+  <div class ="spinnerDiv"></div>
+  <mat-spinner class="spinner"></mat-spinner>
 </div>

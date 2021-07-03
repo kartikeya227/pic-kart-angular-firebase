@@ -21,15 +21,19 @@ export class AuthGaurdService implements CanActivate {
     
     let expectedRole:string = route.data.expectedRole;
     let userString = localStorage.getItem('user');
-    let user:User={};
+    let user!:User;
     if(userString!=null)
     user= JSON.parse(userString);
  
     if(user.role == expectedRole){
       return true;
     }
-    else {
+    else if(user.role!=null){
       this.router.navigate(['/'+user.role]);
+      return false;
+    }
+    else{
+      this.router.navigate(['/sign-in']);
       return false;
     }
   }

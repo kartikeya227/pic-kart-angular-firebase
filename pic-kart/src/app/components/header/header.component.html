@@ -1,1 +1,5 @@
-<mat-toolbar>header</mat-toolbar>
+<mat-toolbar fxLayoutGap="10px">
+    <button *ngIf="logoutFlag; else Login" mat-raised-button color="primary" (click)="logout()">Logout</button>
+    <ng-template #Login><button mat-raised-button color="primary" (click)="login()">Login</button></ng-template>
+    
+</mat-toolbar>
