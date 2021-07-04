@@ -8,6 +8,7 @@ export class User {
     role? : string;
     gender? : string;
     address? : string;
+    productList? : Array<string>;
 
     public constructor(init?: Partial<User>) {
         Object.assign(this, init);

@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {  FlexLayoutModule} from '@angular/flex-layout';
 import {AngularFireModule} from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
@@ -83,6 +85,8 @@ export function firebaseAppNameFactory() {
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(firebaseKey),
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
     NgxAuthFirebaseUIModule.forRoot(firebaseKey, firebaseAppNameFactory,
       {
         enableFirestoreSync: true,
